@@ -78,6 +78,9 @@ export default function WorkingWithArrays(app) {
 
     app.put("/lab5/todos/:id", (req, res) => {
     const { id } = req.params;
+      //remove this line bleow after trying.
+      
+
       const todoIndex = todos.findIndex((t) => t.id === parseInt(id));
       if (todoIndex === -1) {
         res.status(404).json({ message: `Unable to update Todo with ID ${id}` });
@@ -96,3 +99,17 @@ export default function WorkingWithArrays(app) {
 
 
 };
+
+
+//The Error Message and Solution:
+// ReferenceError: todoIndex is not defined
+//     at file:///Users/ellisony/Desktop/School/webdev/kanbas-node-server-app/Lab5/WorkingWithArrays.js:81:7
+//     at Layer.handle[as handle_request](/Users/ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / layer.js: 95: 5)
+//     at next(/Users/ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / route.js: 149: 13)
+//     at Route.dispatch(/Users/ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / route.js: 119: 3)
+//     at Layer.handle[as handle_request](/Users/ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / layer.js: 95: 5)
+// at / Users / ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / index.js: 284: 15
+//     at param(/Users/ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / index.js: 365: 14)
+//     at param(/Users/ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / index.js: 376: 14)
+//     at Function.process_params(/Users/ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / index.js: 421: 3)
+//     at next(/Users/ellisony / Desktop / School / webdev / kanbas - node - server - app / node_modules / express / lib / router / index.js: 280: 10)
