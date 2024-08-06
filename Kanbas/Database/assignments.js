@@ -1,7 +1,7 @@
 export default [
   {
     "_id": "A101",
-    "title": "Propulsion Assignment",
+    "title": "Propulsion Assignment!",
     "course": "RS101",
     "description": "Analyze different propulsion systems used in modern spacecraft.",
     "points": 100,
