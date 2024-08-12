@@ -1,6 +1,7 @@
 import * as dao from "./dao.js";
 
-let currentUser = null;
+//let currentUser = null;
+
 export default function UserRoutes(app) {
   const createUser = async (req, res) => {
     const user = await dao.createUser(req.body);
@@ -41,18 +42,57 @@ export default function UserRoutes(app) {
   };
 
 
-  const signup = async (req, res) => { };
-  const signin = async (req, res) => { };
-  const signout = (req, res) => { };
-  const profile = async (req, res) => { };
+  const signup = async (req, res) => {
+    const user = await dao.findUserByUsername(req.body.username);
+    if (user) {
+      res.status(400).json(
+        { message: "Username already taken" });
+      return;
+    }
+    const currentUser = await dao.createUser(req.body);
+    req.session["currentUser"] = currentUser;
+    res.json(currentUser);
+  };
+
+  const signin = async (req, res) => {
+    const { username, password } = req.body;
+    const currentUser = await dao.findUserByCredentials(username, password); //his says req.body
+    if (currentUser) {
+      req.session["currentUser"] = currentUser;
+      res.json(currentUser);
+    } else {
+      res.status(401).json({ message: "Incorrect Username or Password. " });
+    }
+
+};
+
+  const profile = async (req, res) => {
+    const currentUser = req.session["currentUser"];
+    if (!currentUser) {
+      res.sendStatus(401);
+      return;
+    }
+    res.json(currentUser);
+  };
+
+  const signout = (req, res) => {
+    req.session.destroy();
+    res.sendStatus(200);
+  };
   
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);
-  app.get("/api/users/:userId", findUserById);
+
   app.put("/api/users/:userId", updateUser);
   app.delete("/api/users/:userId", deleteUser);
-  app.post("/api/users/signup", signup);
+ 
   app.post("/api/users/signin", signin);
   app.post("/api/users/signout", signout);
+  app.post("/api/users/signup", signup);
+
+  // change below back to post
   app.post("/api/users/profile", profile);
+
+  app.get("/api/users/:userId", findUserById);
+
 }
