@@ -15,8 +15,8 @@ const quizSchema = new mongoose.Schema({
   } ,
   assignment_group: {
     type: String,
-    enum: ["QUIZZES", "EXAMS", "ASSIGNMENTS","PROJECT"],
-    default: "QUIZZES",
+    enum: ["QUIZ", "EXAM", "ASSIGNMENT","PROJECT"],
+    default: "QUIZ",
   },
   shuffle_answers: {
     type: String,
