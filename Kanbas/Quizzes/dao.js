@@ -11,6 +11,6 @@ export const createQuiz = (quiz) => {
   return model.create(quiz);
 }
 
-export const updateQuiz = (mid, quiz) => model.updateOne({ _id: mid }, { $set: quiz });
+export const updateQuiz = (qid, quiz) => model.updateOne({ _id: qid }, { $set: quiz });
 
-export const deleteQuiz = (mid) => model.deleteOne({ _id: mid });
+export const deleteQuiz = (qid) => model.deleteOne({ _id: qid });
