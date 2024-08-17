@@ -5,10 +5,7 @@ const moduleSchema = new mongoose.Schema({
   course: String,
   lessons: [{
     id: String,
-    name: {
-      type: String,
-      required: true
-    },
+    name: String,
     description: String,
     module: String // Optional, as each lesson already inherently belongs to a module.
   }]
