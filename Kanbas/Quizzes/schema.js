@@ -8,6 +8,11 @@ const quizSchema = new mongoose.Schema({
   due_date: Date,
   available_date: Date,
   available_until_date: Date,
+  published: {
+    type: String,
+    enum: ["False", "True"],
+    default: "False",
+  },
   quiz_type: {
     type: String,
     enum: ["GRADED_QUIZ", "PRACTICE_QUIZ", "GRADED_SURVEY", "UNGRADED_SURVEY"],
