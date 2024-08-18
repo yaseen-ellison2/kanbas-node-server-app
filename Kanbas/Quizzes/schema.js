@@ -8,6 +8,7 @@ const quizSchema = new mongoose.Schema({
   due_date: Date,
   available_date: Date,
   available_until_date: Date,
+  num_questions: Number,
   published: {
     type: String,
     enum: ["False", "True"],
@@ -17,10 +18,10 @@ const quizSchema = new mongoose.Schema({
     type: String,
     enum: ["GRADED_QUIZ", "PRACTICE_QUIZ", "GRADED_SURVEY", "UNGRADED_SURVEY"],
     default: "GRADED_QUIZ",
-  } ,
+  },
   assignment_group: {
     type: String,
-    enum: ["QUIZ", "EXAM", "ASSIGNMENT","PROJECT"],
+    enum: ["QUIZ", "EXAM", "ASSIGNMENT", "PROJECT"],
     default: "QUIZ",
   },
   shuffle_answers: {
@@ -57,15 +58,33 @@ const quizSchema = new mongoose.Schema({
     default: "False",
   },
   questions: [{
-    _id: String,
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: null,
+    },
     question: {
       type: String,
       required: true
     },
-    answer: String,
-    quiz: String // Optional, as each lesson already inherently belongs to a quiz.
+    answer: [{
+      type: String,
+    }],
+    quiz: String, // This corresponds to the quiz ID
+    points: {
+      type: Number,
+      default: 0,
+    },
+    type: {
+      type: String, // Represents the dropdown value (e.g., "multiple_choice")
+      enum: ["multiple_choice", "true_false", "fill_in_the_blanks"],
+      default: "multiple_choice",
+    },
+    options: [{
+      type: String,
+    }],
   }]
-},
+}, 
   { collection: "quizzes" }
 );
+
 export default quizSchema;
