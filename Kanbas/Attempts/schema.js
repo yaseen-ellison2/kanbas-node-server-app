@@ -7,7 +7,7 @@ const attemptSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  submittedDate: Date,
+  submittedDate: String,
   answers: [
     {
       qqid: String, // question id
