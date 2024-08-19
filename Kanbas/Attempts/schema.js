@@ -12,8 +12,9 @@ const attemptSchema = new mongoose.Schema({
     {
       qqid: String, // question id
       question: String, // question words
-      answer: String  // student's answer
+      answer: mongoose.Schema.Types.Mixed  // student's answer
     }
+    
   ],
   score: {
     type: Number,
