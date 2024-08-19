@@ -13,6 +13,8 @@ import AssignmentRoutes from "./Kanbas/Assignments/routes.js";
 import UserRoutes from "./Kanbas/Users/routes.js";
 import QuizRoutes from "./Kanbas/Quizzes/routes.js";
 import EnrollmentRoutes from "./Kanbas/Enrollments/routes.js";
+import AttemptRoutes from "./Kanbas/Attempts/routes.js";
+
 
 
 import mongoose from "mongoose";
@@ -64,6 +66,8 @@ UserRoutes(app);
 QuizRoutes(app);
 
 EnrollmentRoutes(app);
+
+AttemptRoutes(app);
 
 Lab5(app);
 
