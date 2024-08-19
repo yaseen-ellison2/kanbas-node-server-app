@@ -2,7 +2,7 @@ import model from "./model.js";
 
 export const findAllAttempts = () => model.find();
 
-export const findAttemptByUser = (user) => model.find({ user: user });
+export const findAttemptByUser = (taker) => model.find({ taker: taker });
 
 export const createOrUpdateAttempt = async (attempt) => {
   const existingAttempt = await model.findOne({ taker: attempt.taker, quiz: attempt.quiz });

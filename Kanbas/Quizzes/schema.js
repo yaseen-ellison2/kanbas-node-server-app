@@ -58,10 +58,10 @@ const quizSchema = new mongoose.Schema({
     default: "False",
   },
   questions: [{
-    _id: {
-      type: mongoose.Schema.Types.ObjectId,
-      default: null,
-    },
+    // _id: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   default: null,
+    // },
     question: {
       type: String,
       required: true
