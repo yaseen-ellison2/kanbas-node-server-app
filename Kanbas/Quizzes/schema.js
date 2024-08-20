@@ -35,7 +35,7 @@ const quizSchema = new mongoose.Schema({
     enum: ["False", "True"],
     default: "False",
   },
-  num_attempts: Number,
+  max_attempts: Number,
   show_correct: {
     type: String,
     enum: ["False", "True"],
